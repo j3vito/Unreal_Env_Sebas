@@ -1,0 +1,45 @@
+1. El Recurso Base: La Textura (Texture2D)
+¿Qué es?: Es un archivo de imagen plano (como un .png o .tga).
+
+Para qué sirve: Es la "pintura". Por sí sola no hace nada en el juego; necesita un material que le diga cómo reaccionar a la luz. Tú has usado dos: una de Debug (para ver si los cuadrados se estiran o deforman) y una de Hierba.
+
+2. El "Cerebro": Material Master (M_Master)
+¿Qué es?: Un gráfico de nodos donde programas la lógica.
+
+Para qué sirve: Aquí decides las reglas. Por ejemplo: "Quiero que todas mis texturas se puedan multiplicar por un color" o "Quiero que el brillo sea ajustable".
+
+Dato clave: Es pesado de procesar. Solo se crea uno para muchos objetos similares.
+
+3. La Herramienta de Limpieza: Material Function (MF_Unpack)
+¿Qué es?: Una "caja" donde guardas nodos complejos para que no estorben en el Material Master.
+
+Para qué sirve: En tu caso, sirve para separar los canales de una textura (como el ORM) y limpiar los datos antes de que el Master los use. Es como una receta de cocina que guardas en un cajón y sacas solo cuando la necesitas.
+
+4. Los "Hijos": Material Instance (MI_...)
+¿Qué es?: Una copia del Material Master que te permite cambiar valores sin reprogramar nada.
+
+Para qué sirve: Es lo que realmente aplicas a los objetos en el nivel.
+
+Por qué las usas: Si cambias una textura en una Instancia, el cambio es instantáneo. Si lo hicieras en el Master, el motor tendría que "recompilar", y perderías tiempo (y salud mental).
+
+5. El Concepto Técnico: PBR (Physically Based Rendering)
+¿Qué es?: Un sistema que intenta imitar cómo funciona la luz en el mundo real.
+
+Los tres jinetes del PBR que has visto en tus fotos:
+
+Base Color: El color "puro" sin sombras.
+
+Normal Map: El "truco" visual para que algo plano parezca que tiene relieve (tus texturas azuladas/lilas).
+
+ORM (Occlusion, Roughness, Metallic): Una textura "3 en 1" que ahorra memoria y le dice a Unreal qué partes brillan, qué partes son metal y dónde hay sombras pequeñas.
+
+6. La Variable: Parámetros (Scalars y Vectors)
+¿Qué es?: Son los nodos que "expones" para que aparezcan en la Material Instance.
+
+Para qué sirve:
+
+Scalar Parameter: Un número (ej: Brillo = 1.5).
+
+Vector Parameter: Un color (ej: Tinte = Rojo).
+
+Texture Parameter: El hueco para meter la foto (ej: Aquí va la Hierba).
