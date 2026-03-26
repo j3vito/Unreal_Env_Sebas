@@ -1,0 +1,49 @@
+Estructura y Jerarquía
+Conceptos sobre cómo se organiza el trabajo para no repetir tareas.
+
+Material Master (Material Maestro): Es el "plano" o la "plantilla" principal. Aquí es donde programas toda la lógica (colores, texturas, brillos). Solo se crea uno para muchos objetos.
+
+Material Instance (Instancia de Material): Es un "hijo" del Material Master. No tiene nodos, solo opciones para cambiar texturas o valores. Es lo que realmente pones sobre tus modelos 3D porque es mucho más rápido para el ordenador.
+
+Material Function (Función de Material): Imagina una caja donde guardas un grupo de nodos complejos. Sirve para que el Material Master no se llene de cables y para poder reutilizar esa "caja" en otros materiales. (En tu caso, es el MF_Unpack).
+
+🎨 Propiedades Visuales (PBR)
+Términos sobre cómo se ve la superficie de los objetos. PBR significa Physically Based Rendering (Renderizado Basado en la Física).
+
+Base Color: El color puro de la superficie, sin luces ni sombras. Es la "foto" del objeto.
+
+Normal Map: Una textura (normalmente azul/violeta) que engaña al ojo para que parezca que una superficie plana tiene relieve, grietas o detalles 3D.
+
+ORM (Occlusion, Roughness, Metallic): Es una textura "ahorradora". En lugar de tener tres archivos, metemos tres datos en uno:
+
+Occlusion (Oclusión): Crea sombras suaves en los huecos donde no llega la luz.
+
+Roughness (Rugosidad): Define si algo es mate (como la tiza) o brilla mucho (como un espejo).
+
+Metallic (Metálico): Define si el material es un metal o no.
+
+⚙️ Herramientas y Nodos
+Los elementos que usas dentro del editor de materiales.
+
+Texture Sample (Muestra de Textura): El nodo que contiene tu imagen (la de hierba, la de debug, etc.).
+
+Parameter (Parámetro): Un nodo que "sacas" al exterior para que sea visible en la Material Instance.
+
+Scalar Parameter: Un solo número (ej: 0 para mate, 1 para brillo).
+
+Vector Parameter: Un grupo de números, normalmente usado para elegir un color (R, G, B).
+
+Tiling: Es cuántas veces se repite una textura sobre un objeto. Si el tiling es 2, la textura se verá más pequeña y se repetirá el doble.
+
+Debug Texture: Una textura de prueba (normalmente cuadros de colores) que usamos para comprobar si el material está bien aplicado antes de poner la textura final.
+
+Luminancia: Un valor que controla la intensidad de la luz o el brillo que emite el color base.
+
+Desaturación: Un efecto que quita el color a una imagen hasta dejarla en blanco y negro.
+
+🧮 Operaciones Lógicas
+Lo que pasa "por dentro" de los cables.
+
+Unpack (Desempaquetar): La acción de separar los datos que vienen juntos. Por ejemplo, separar el canal Rojo (Oclusión) del Verde (Rugosidad) en una textura ORM.
+
+Remapping (Remapeo): Ajustar los valores. Por ejemplo, si una textura es demasiado brillante, "remapeamos" sus valores para que el máximo sea más bajo. Es como ponerle un filtro a un control.
