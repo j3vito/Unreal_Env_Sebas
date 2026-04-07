@@ -1,3 +1,7 @@
+Descarga Pure ref
+
+
+
 1. El Recurso Base: La Textura (Texture2D)
 ¿Qué es?: Es un archivo de imagen plano (como un .png o .tga).
 
